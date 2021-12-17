@@ -1,0 +1,8 @@
+.md-header__button.md-logo :where(img,svg) {
+    height: 2.5rem;
+    width: auto;
+}
+
+.md-header__ellipsis{
+    display:none;
+}

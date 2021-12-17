@@ -1,3 +1,16 @@
 site_name: Ray
 theme:
   name: material
+  logo: 'images/ray_logo.png'
+  favicon: 'images/favicon.ico'
+  palette:
+    primary: white
+extra_css:
+    - stylesheets/extra.css
+nav:
+    - 'Welcome to Ray documentations': index.md
+    - 'What and why': what-and-why/what-and-why-ray.md
+    - 'Ray for distributed compute':
+      - 'Getting started': ray-distributed-compute/getting_started.md
+      - 'Key concepts': ray-distributed-compute/key_concepts.md
+      
