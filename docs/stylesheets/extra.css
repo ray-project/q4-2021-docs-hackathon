@@ -26,3 +26,16 @@
     opacity: 1;
     color: #1976D2;
 }
+
+/* Hide main nav title */
+label[for="__drawer"] {
+    display: none;
+}
+.md-nav__list>*:first-child {
+    margin-top: 0;
+}
+
+/* bold the top level childless pages */
+.md-nav--primary > .md-nav__list > li > a {
+    font-weight: bold;
+}
