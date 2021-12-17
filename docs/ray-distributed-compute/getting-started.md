@@ -21,7 +21,7 @@ For the latest wheels (for a snapshot of master), you can use these instructions
 
 You can start Ray cluster with a single node or your laptop and utilize all its multiple cores.
 
-```
+```py
 import ray
 
 # Start Ray. If you're connecting to an existing cluster, you would use
@@ -35,7 +35,7 @@ ray.init()
 Ray enables arbitrary functions to be executed asynchronously. These asynchronous Ray functions are called “remote functions”. They
 return immediately with a future reference, which can be fetched. Here is simple example.
 
-```
+```py
 # A regular Python function.
 def my_function():
     return 1
@@ -67,12 +67,12 @@ for _ in range(4):
 ## Fetching returned values 
 
 From the above `my_function`, the result can be retrieved with ``ray.get``, which is a blocking call.
-```
+```py
 assert ray.get(obj_ref) == 1
 ```
 
 You can also fetch list of objects returned, as we did above. 
-```
+```py
 assert ray.get(obj_refs) == [1, 1, 1, 1]
 ```
 This will return a list of [1, 1, 1, 1]
@@ -82,7 +82,7 @@ This will return a list of [1, 1, 1, 1]
 a remote host, the argument will be a retrieved in-line from an object store as a **regular object**.
 For example, take this function:
 
-```
+```py
 @ray.remote
 def function_with_an_argument(value):
     # argument in-line fetched or resolved as a value
@@ -108,7 +108,7 @@ A couple of salient Ray behavior to note here:
 Being true to Pythonic, Ray can return multiple object refs, by specifying in the remote decorator. The 
 returned object_refs can be retrieved individually via `ray.get(obj_ref)`.
 
-```
+```py
 @ray.remote(num_returns=3)
 def return_multiple():
     return 1, 2, 3
@@ -123,7 +123,7 @@ assert ray.get(c) == 3
 Often you may want to cancel a long-running task on a remote host. You don't know where the task is
 scheduled, but using returned obj_ref, you instruct Ray to locate the task and terminate it.
 
-```
+```py
 @ray.remote
 def blocking_operation():
     time.sleep(10e6)
@@ -134,7 +134,7 @@ ray.cancel(obj_ref)
 ```
 
 Fetching an obj_ref of a cancelled task raises and exception. 
-```
+```py
 from ray.exceptions import TaskCancelledError
 
 # In case you want to be cautious.
@@ -150,7 +150,7 @@ Ray can then schedule the task on the node on the cluster with the required comp
 Ray will automatically detect the available GPUs and CPUs on the machine. However, you can 
 override this default behavior by passing in specific resources.
 
-```
+```py
 ray.init(num_cpus=8, num_gpus=4)
 
 ```
@@ -159,7 +159,7 @@ resource requirements of all of the concurrently executing tasks on a given node
 
 For a specific Ray task, you can specify individual resources as well.
 
-```
+```py
 # Specify required resources.
 @ray.remote(num_cpus=4, num_gpus=2)
 def my_function():
@@ -190,7 +190,7 @@ Object refs can be created in multiple ways:
  2. They are returned by `ray.put`.
 
 For example:
-```
+```py
 y = 1
 object_ref = ray.put(y)
 ```
@@ -206,7 +206,7 @@ from where it's stored in the cluster.
 Also, if the object is a **numpy array** or a collection of numpy arrays, the get call is zero-copy and returns arrays backed by shared 
 object store memory. Otherwise, we deserialize the object data into a Python object.
 
-```
+```py
 # Get the value of one object ref.
 obj_ref = ray.put(1)
 assert ray.get(obj_ref) == 1
@@ -230,7 +230,7 @@ except GetTimeoutError:
 
 After launching a number of tasks, you may want to know which ones have finished executing. This can be done 
 with `ray.wait`. One way is to fetch only the finished tasks returned. You can programmatically do as follows.
-```
+```py
 @ray.remote
 def f():
     time.sleep(1)
@@ -256,7 +256,7 @@ while len(obj_refs) > 0:
 ## Remote Classes as Ray Actors
 Actors extend the Ray API from a function as remote-stateless task to class as remote-stateful service. An actor is essentially a 
 stateful worker; its class methods can be executed as remote-stateful tasks. Let's see an easy example.
-```
+```py
 @ray.remote
 class Counter:
     def __init__(self):
@@ -270,7 +270,7 @@ counter = Counter.remote()
 ```
 ## Specifying required resources
 As with Ray tasks, you can allocate compute resources to a Ray actor
-```
+```py
 @ray.remote
 class Actor(num_cpus=2, num_gpus=0.5)
     pass
@@ -280,7 +280,7 @@ class Actor(num_cpus=2, num_gpus=0.5)
 ## Calling the actor methods
 We can interact with the actor by calling its methods with the `remote` operator. We can then call get on the object ref to retrieve 
 the actual value.
-```
+```py
 assert ray.get(counter.remote()) == 1
 # Send the value 2 as an argument to its method via the `remote` method
 assert ray.get(counter.remote(2) == 3
@@ -290,7 +290,7 @@ Observe the state, the current value of the instance variable, is maintained by 
 Methods called on different actors can execute in parallel, and methods called on the same actor are executed serially in the order that they are called. Methods on the same actor will share state 
 with one another, as shown below.
 
-```
+```py
 # Create ten instances of actors wit Counter
 counters = [Count.remote() for _ in range(10)]
 # Increment each Counter once and get the results. These tasks all happen in parallel
