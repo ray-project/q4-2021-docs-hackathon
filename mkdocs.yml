@@ -8,15 +8,20 @@ theme:
     accent: blue
   features:
     - navigation.sections
+    - content.tabs.link
 extra_css:
     - stylesheets/extra.css
 
 markdown_extensions:
+  # Syntax highlighting
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  # Images
+  - attr_list
+  - md_in_html
 
 nav:
   - Getting started:
@@ -28,10 +33,10 @@ nav:
     - 'Tutorials': ray-distributed-compute/tutorials.md
   - Ray for ML:
     - 'Overview': ray-ml/overview.md
-    - 'Ray Datasets': 
-      - 'Getting started': ray-ml/ray-datasets/getting-started.md
-      - 'Key concepts': ray-ml/ray-datasets/key-concepts.md
-      - 'Tutorials': ray-ml/ray-datasets/tutorials.md
+    - 'Ray Data': 
+      - 'Getting started': ray-ml/ray-data/getting-started.md
+      - 'Key concepts': ray-ml/ray-data/key-concepts.md
+      - 'Tutorials': ray-ml/ray-data/tutorials.md
     - 'Ray Train': 
       - 'Getting started': ray-ml/ray-train/getting-started.md
       - 'Key concepts': ray-ml/ray-train/key-concepts.md
@@ -51,16 +56,16 @@ nav:
   - Ray for infra:
     - 'Overview': ray-infra/overview.md
     - 'Ray Serve': 
-      - 'Getting started': ray-infra/ray-serve/getting-started.md
-      - 'Key concepts': ray-infra/ray-serve/key-concepts.md
-      - 'Tutorials': ray-infra/ray-serve/tutorials.md
+      - 'Getting started': ray-ml/ray-serve/getting-started.md
+      - 'Key concepts': ray-ml/ray-serve/key-concepts.md
+      - 'Tutorials': ray-ml/ray-serve/tutorials.md
   - Deploy Ray:
     - 'Getting started': ray-deployment/getting-started.md
     - 'Key concepts': ray-deployment/key-concepts.md
     - 'Tutorials': ray-deployment/tutorials.md
   - API references:
     - 'Ray Core': api-references/ray-core.md
-    - 'Ray Datasets': api-references/ray-datasets.md
+    - 'Ray Data': api-references/ray-data.md
     - 'Ray Train': api-references/ray-train.md
     - 'RLlib': api-references/ray-rllib.md
     - 'Ray Tune': api-references/ray-tune.md
