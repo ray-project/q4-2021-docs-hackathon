@@ -1,9 +1,12 @@
 # Key concepts
+Like any new framework, especially a distributed one, Ray has many concepts and terms you will want to get
+familiar as you dive deeper in its user guide, understand terms used in [getting started with Ray](getting_started.md)
 
 ## Ray basics
 
 **Ray Application** <br>
-A program including a Ray script that calls ray.init() and uses Ray tasks or actors.
+A program including a Ray script that calls `ray.init()` and uses Ray programing primitives as`tasks`, `actors`, which can be executed
+locally or remotely on a Ray cluster.
 
 **Tasks (Remote functions)** <br>
 Tasks (Remote functions) are asynchronous Ray functions. Ray enables arbitrary functions to be executed asynchronously.
