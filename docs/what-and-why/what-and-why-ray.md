@@ -17,7 +17,11 @@ Ray is an open-source project developed at UC Berkeley RISE Lab. As a general-pu
 it allows any compute-intensive Python workload — from distributed training or hyperparameter tuning to deep learning training and production model serving.
 
 It provides a set of distributed programming primitives—tasks, actors, and object—APIs in Python, C++, and Java to developers. 
-The Ray autoscaler and the Ray runtime handle the scheduling, distributing, and fault-tolerance needs of your application.
+The Ray autoscaler and the Ray runtime handle the scheduling, distributing, and fault-tolerance needs of your application. Although
+most developers will use its Python API bindings, Python on its own is limited to a single threaded
+programming model, because of the infamous global interpreter lock (GIL). It's limited in its capabilities in taking advantage of multiple
+cores on the single machine. However, its `multiprocessing` modules comes to the rescue on a single host. But beyond a single node, you will need
+a distributed framework like Ray.
 
 ![](images/ray_framework.png)
 
