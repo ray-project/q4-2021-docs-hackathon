@@ -1,4 +1,4 @@
-## Getting started with a Ray core walk through
+## Getting started with a 10-minute Ray core walk through
 
 
 This short walk through will quickly get you started with Ray core APIs. It will give you the feel for its simplicity and
@@ -30,7 +30,7 @@ import ray
 ray.init()
 ```
 
-## Remote functions (Tasks)
+## Remote functions as Tasks
 
 Ray enables arbitrary functions to be executed asynchronously. These asynchronous Ray functions are called “remote functions”. They
 return immediately with a future reference, which can be fetched. Here is simple example.
@@ -154,12 +154,157 @@ override this default behavior by passing in specific resources.
 ray.init(num_cpus=8, num_gpus=4)
 
 ```
+The resource requirements of a task have implications for the Ray’s scheduling concurrency. In particular, the sum of the 
+resource requirements of all of the concurrently executing tasks on a given node cannot exceed the node’s total resources.
+
 For a specific Ray task, you can specify individual resources as well.
+
 ```
 # Specify required resources.
 @ray.remote(num_cpus=4, num_gpus=2)
 def my_function():
     return 1
 ```
+
 Of the eight CPUs and four GPUs requested, four CPUs and two GPUs will be allocated when
 this above task is scheduled for execution.
+
+**Note**:
+
+1. If you do not specify any resources, the default is 1 CPU resource and no other resources. 
+2. If specifying CPUs, Ray does not enforce isolation (i.e., your task is expected to honor its request).
+3. If specifying GPUs, Ray does provide isolation in forms of visible devices (setting the environment variable **CUDA_VISIBLE_DEVICES**), but it is the task’s responsibility to actually use the GPUs (e.g., through a deep learning framework like TensorFlow or PyTorch).
+
+### Objects in Ray
+
+In Ray, we can create and compute on objects. We refer to these objects as remote objects, and we use object refs to refer to them. 
+Remote objects are stored in **shared-memory object stores**, and there is one object store per node in the cluster. In the cluster setting, 
+we may not actually know which machine each object lives on.
+
+An *object ref* is essentially a unique ID that can be used to refer to a remote object. If you’re familiar with **futures**, 
+our object refs are conceptually similar.
+
+Object refs can be created in multiple ways:
+
+ 1. They are returned by remote function calls. 
+ 2. They are returned by `ray.put`.
+
+For example:
+```
+y = 1
+object_ref = ray.put(y)
+```
+### Fetching Objects in Ray
+Ray provides primitives `ray.get(object_ref) to retrieve object refs values from the object store. 
+As a developer, you need not worry where or on what node's object store the object ref is stored.
+Ray keeps all the bookkeeping and meta-data associated with it and know precisely how to fetch its
+associated value.
+
+If the current node’s object store, where `ray.get(object_ref)` is being executed, does not contain the object, the object is downloaded
+from where it's stored in the cluster. 
+
+Also, if the object is a **numpy array** or a collection of numpy arrays, the get call is zero-copy and returns arrays backed by shared 
+object store memory. Otherwise, we deserialize the object data into a Python object.
+
+```
+# Get the value of one object ref.
+obj_ref = ray.put(1)
+assert ray.get(obj_ref) == 1
+
+# Get the values of multiple object refs in parallel.
+assert ray.get([ray.put(i) for i in range(3)]) == [0, 1, 2]
+
+# You can also set a timeout to return early from a ``get`` that's blocking for too long.
+from ray.exceptions import GetTimeoutError
+
+@ray.remote
+def long_running_function():
+    time.sleep(8)
+
+obj_ref = long_running_function.remote()
+try:
+    ray.get(obj_ref, timeout=4)
+except GetTimeoutError:
+    print("`get` timed out.")
+```
+
+After launching a number of tasks, you may want to know which ones have finished executing. This can be done 
+with `ray.wait`. One way is to fetch only the finished tasks returned. You can programmatically do as follows.
+```
+@ray.remote
+def f():
+    time.sleep(1)
+    return "done"
+
+# Execute `f()` in a comprehension, returning a list of object refs   
+obj_refs =  [f.remote() for i in range(5)])]
+# Iterate over the unfinished tasks
+while len(obj_refs) > 0:
+   return_n = 2 if len(obj_refs) > 1 else 1
+   # only return no more than two finished tasks. This may block of no tasks are finished yet
+   ready_refs, remaining_refs = ray.wait(obj_refs, num_returns=return_n, timeout=10.0)
+   # print the finished tasks. This get won't block
+   if len(ready_refs) > 0:
+      print(ray.get(ready_refs))
+   # Update the remaining ones
+   obj_refs = remaining_refs
+
+[done, done]
+[done, done]
+[done]
+```
+## Remote Classes as Ray Actors
+Actors extend the Ray API from a function as remote-stateless task to class as remote-stateful service. An actor is essentially a 
+stateful worker; its class methods can be executed as remote-stateful tasks. Let's see an easy example.
+```
+@ray.remote
+class Counter:
+    def __init__(self):
+        self.value = 0
+    def increment(self, val=1):
+        self.value += val
+        return self.value
+        
+# Create an actor from this class.
+counter = Counter.remote()
+```
+## Specifying required resources
+As with Ray tasks, you can allocate compute resources to a Ray actor
+```
+@ray.remote
+class Actor(num_cpus=2, num_gpus=0.5)
+    pass
+```
+**Note**: Yes, you can allocate a fraction of a compute resource
+
+## Calling the actor methods
+We can interact with the actor by calling its methods with the `remote` operator. We can then call get on the object ref to retrieve 
+the actual value.
+```
+assert ray.get(counter.remote()) == 1
+# Send the value 2 as an argument to its method via the `remote` method
+assert ray.get(counter.remote(2) == 3
+```
+Observe the state, the current value of the instance variable, is maintained by the remote actor. 
+
+Methods called on different actors can execute in parallel, and methods called on the same actor are executed serially in the order that they are called. Methods on the same actor will share state 
+with one another, as shown below.
+
+```
+# Create ten instances of actors wit Counter
+counters = [Count.remote() for _ in range(10)]
+# Increment each Counter once and get the results. These tasks all happen in parallel
+results = ray.get([c.increment.remote() for c in counters])
+print(results)  # prints [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+# Increment the first Counter five times. These tasks are executed serially
+# and share state.
+results = ray.get([counters[0].increment.remote() for _ in range(5)])
+print(results)  # prints [2, 3, 4 , 5, 6]
+```
+
+Now that you have take a 10-minute walk through Ray core APIs and how they work, this is a good time
+to comprehend some Ray concepts that were used here as well as Ray architecture. 
+
+
+
