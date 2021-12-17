@@ -1,6 +1,6 @@
 # Key concepts
 Like any new framework, especially a distributed one, Ray has many concepts and terms you will want to get
-familiar as you dive deeper in its user guide, understand terms used in [getting started with Ray](getting_started.md)
+familiar as you dive deeper in its user guide, understand terms used in [getting started with Ray](getting-started.md)
 
 ## Ray basics
 
