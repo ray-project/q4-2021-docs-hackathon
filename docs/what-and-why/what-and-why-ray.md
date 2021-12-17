@@ -23,7 +23,7 @@ programming model, because of the infamous global interpreter lock (GIL). It's l
 cores on the single machine. However, its `multiprocessing` modules comes to the rescue on a single host. But beyond a single node, you will need
 a distributed framework like Ray.
 
-![](images/ray_framework.png)
+![](images/ray_framework_v2.png)
 
 With a rich set of ML libraries and integrations built on a flexible distributed execution framework, Ray makes distributed computing easy 
 and accessible to every engineer. Because most popular ML libraries have Python bindings, data scientists and ML developers are attracted to Ray 
@@ -43,7 +43,7 @@ Composability is its strength. For example, you can use XGBBoost easily with Ray
 Ray Serve. Or you can use PyTorch and TensorFlow just as easily with Ray Train. In short, it has a rich ecosystem of integrations with not 
 only ML libraries but also other tools and frameworks.
 
-![](images/ray_ecosystem_integration.png)
+![](images/ray_ecosystem_integration_v2.png)
 
 
 And third, you can use your laptop, as most developers invariably do, for development. When you want to scale or extend it to a Ray cluster, 
