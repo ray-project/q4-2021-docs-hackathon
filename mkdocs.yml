@@ -6,56 +6,59 @@ theme:
   palette:
     primary: white
     accent: blue
+  features:
+    - navigation.sections
 extra_css:
     - stylesheets/extra.css
 nav:
+  - Getting started:
     - 'Welcome to Ray documentations': index.md
     - 'What and why': what-and-why/what-and-why-ray.md
-    - 'Ray for distributed compute':
-      - 'Getting started': ray-distributed-compute/getting-started.md
-      - 'Key concepts': ray-distributed-compute/key-concepts.md
-      - 'Tutorials': ray-distributed-compute/tutorials.md
-    - 'Ray for ML':
-      - 'Overview': ray-ml/overview.md
-      - 'Ray Datasets': 
-        - 'Getting started': ray-ml/ray-datasets/getting-started.md
-        - 'Key concepts': ray-ml/ray-datasets/key-concepts.md
-        - 'Tutorials': ray-ml/ray-datasets/tutorials.md
-      - 'Ray Train': 
-        - 'Getting started': ray-ml/ray-train/getting-started.md
-        - 'Key concepts': ray-ml/ray-train/key-concepts.md
-        - 'Tutorials': ray-ml/ray-train/tutorials.md
-      - 'RLlib': 
-        - 'Getting started': ray-ml/ray-rllib/getting-started.md
-        - 'Key concepts': ray-ml/ray-rllib/key-concepts.md
-        - 'Tutorials': ray-ml/ray-rllib/tutorials.md
-      - 'Ray Tune': 
-        - 'Getting started': ray-ml/ray-tune/getting-started.md
-        - 'Key concepts': ray-ml/ray-tune/key-concepts.md
-        - 'Tutorials': ray-ml/ray-tune/tutorials.md
-      - 'Ray Workflows': 
-        - 'Getting started': ray-ml/ray-workflows/getting-started.md
-        - 'Key concepts': ray-ml/ray-workflows/key-concepts.md
-        - 'Tutorials': ray-ml/ray-workflows/tutorials.md
-    - 'Ray for infra':
-      - 'Overview': ray-infra/overview.md
-      - 'Ray Serve': 
-        - 'Getting started': ray-infra/ray-serve/getting-started.md
-        - 'Key concepts': ray-infra/ray-serve/key-concepts.md
-        - 'Tutorials': ray-infra/ray-serve/tutorials.md
-    - 'Deployment':
-      - 'Getting started': ray-deployment/getting-started.md
-      - 'Key concepts': ray-deployment/key-concepts.md
-      - 'Tutorials': ray-deployment/tutorials.md
-    - 'API references':
-      - 'Ray Core': api-references/ray-core.md
-      - 'Ray Datasets': api-references/ray-datasets.md
-      - 'Ray Train': api-references/ray-train.md
-      - 'RLlib': api-references/ray-rllib.md
-      - 'Ray Tune': api-references/ray-tune.md
-      - 'Ray Workflows': api-references/ray-workflows.md
-      - 'Ray Serve': api-references/ray-serve.md
-    - 'Contributor guide':
-      - 'Getting involved / Contributing': contributor-guide/getting-involved.md
+  - Ray for distributed compute:
+    - 'Getting started': ray-distributed-compute/getting-started.md
+    - 'Key concepts': ray-distributed-compute/key-concepts.md
+    - 'Tutorials': ray-distributed-compute/tutorials.md
+  - Ray for ML:
+    - 'Overview': ray-ml/overview.md
+    - 'Ray Datasets': 
+      - 'Getting started': ray-ml/ray-datasets/getting-started.md
+      - 'Key concepts': ray-ml/ray-datasets/key-concepts.md
+      - 'Tutorials': ray-ml/ray-datasets/tutorials.md
+    - 'Ray Train': 
+      - 'Getting started': ray-ml/ray-train/getting-started.md
+      - 'Key concepts': ray-ml/ray-train/key-concepts.md
+      - 'Tutorials': ray-ml/ray-train/tutorials.md
+    - 'RLlib': 
+      - 'Getting started': ray-ml/ray-rllib/getting-started.md
+      - 'Key concepts': ray-ml/ray-rllib/key-concepts.md
+      - 'Tutorials': ray-ml/ray-rllib/tutorials.md
+    - 'Ray Tune': 
+      - 'Getting started': ray-ml/ray-tune/getting-started.md
+      - 'Key concepts': ray-ml/ray-tune/key-concepts.md
+      - 'Tutorials': ray-ml/ray-tune/tutorials.md
+    - 'Ray Workflows': 
+      - 'Getting started': ray-ml/ray-workflows/getting-started.md
+      - 'Key concepts': ray-ml/ray-workflows/key-concepts.md
+      - 'Tutorials': ray-ml/ray-workflows/tutorials.md
+  - Ray for infra:
+    - 'Overview': ray-infra/overview.md
+    - 'Ray Serve': 
+      - 'Getting started': ray-infra/ray-serve/getting-started.md
+      - 'Key concepts': ray-infra/ray-serve/key-concepts.md
+      - 'Tutorials': ray-infra/ray-serve/tutorials.md
+  - Deploy Ray:
+    - 'Getting started': ray-deployment/getting-started.md
+    - 'Key concepts': ray-deployment/key-concepts.md
+    - 'Tutorials': ray-deployment/tutorials.md
+  - API references:
+    - 'Ray Core': api-references/ray-core.md
+    - 'Ray Datasets': api-references/ray-datasets.md
+    - 'Ray Train': api-references/ray-train.md
+    - 'RLlib': api-references/ray-rllib.md
+    - 'Ray Tune': api-references/ray-tune.md
+    - 'Ray Workflows': api-references/ray-workflows.md
+    - 'Ray Serve': api-references/ray-serve.md
+  - Contributor guide:
+    - 'Getting involved / Contributing': contributor-guide/getting-involved.md
 
       
