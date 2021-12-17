@@ -53,8 +53,6 @@ nav:
       - 'Getting started': ray-ml/ray-workflows/getting-started.md
       - 'Key concepts': ray-ml/ray-workflows/key-concepts.md
       - 'Tutorials': ray-ml/ray-workflows/tutorials.md
-  - Ray for infra:
-    - 'Overview': ray-infra/overview.md
     - 'Ray Serve': 
       - 'Getting started': ray-ml/ray-serve/getting-started.md
       - 'Key concepts': ray-ml/ray-serve/key-concepts.md
