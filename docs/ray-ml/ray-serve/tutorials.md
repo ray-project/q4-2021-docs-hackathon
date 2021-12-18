@@ -59,7 +59,7 @@ class Counter:
 
 
 Notice that we made this class into a `Deployment` with the
-`@serve.deployment <ray.serve.api.deployment>` decorator. This decorator
+`@serve.deployment` decorator. This decorator
 is where we could set various configuration options such as the number
 of replicas, unique name of the deployment (it defaults to the class
 name), or the HTTP route prefix to expose the deployment at. See the

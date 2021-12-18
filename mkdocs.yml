@@ -61,7 +61,7 @@ nav:
       - 'Key concepts': ray-ml/ray-serve/key-concepts.md
       - 'Tutorials': 
         - 'Quick start': ray-ml/ray-serve/tutorials.md
-        - 'Model composition': ray-ml/ray-serve/tutorials.md
+        - 'Model composition': ray-ml/ray-serve/tutorials/model-composition.md
   - Deploy Ray:
     - 'Getting started': ray-deployment/getting-started.md
     - 'Key concepts': ray-deployment/key-concepts.md
