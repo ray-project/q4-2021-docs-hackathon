@@ -37,9 +37,7 @@ nav:
   - Ray for distributed compute:
     - 'Getting started': ray-distributed-compute/getting-started.md
     - 'Key concepts': ray-distributed-compute/key-concepts.md
-    - 'Tutorials':
-        - 'Building Ray on Linux and macOS': ray-deployment/installing-ray/building-ray-on-linux-and-macos.md
-        - 'Building Ray on Windows': ray-deployment/installing-ray/building-ray-on-windows.md
+    - 'Tutorials': ray-distributed-compute/tutorials.md
   - Ray for ML:
     - 'Overview': ray-ml/overview.md
     - 'Ray Data': 
@@ -82,6 +80,8 @@ nav:
     # - 'Ray Workflows': api-references/ray-workflows.md
     # - 'Ray Serve': api-references/ray-serve.md
   - Contributor guide: contributor-guide/getting-involved.md
+    - 'Building Ray on Linux and macOS': ray-deployment/installing-ray/building-ray-on-linux-and-macos.md
+    - 'Building Ray on Windows': ray-deployment/installing-ray/building-ray-on-windows.md
     # - 'Getting involved / Contributing': contributor-guide/getting-involved.md
 
       
