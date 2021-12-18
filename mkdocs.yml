@@ -79,7 +79,7 @@ nav:
     # - 'Ray Tune': api-references/ray-tune.md
     # - 'Ray Workflows': api-references/ray-workflows.md
     # - 'Ray Serve': api-references/ray-serve.md
-  - Contributor guide: contributor-guide/getting-involved.md
+  - Contributor guide:
     - 'Building Ray on Linux and macOS': ray-deployment/installing-ray/building-ray-on-linux-and-macos.md
     - 'Building Ray on Windows': ray-deployment/installing-ray/building-ray-on-windows.md
     # - 'Getting involved / Contributing': contributor-guide/getting-involved.md
