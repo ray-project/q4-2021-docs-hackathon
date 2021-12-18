@@ -168,14 +168,49 @@ return immediately with a future reference, which can be fetched. Here is simple
 ## Fetching returned values 
 
 From the above `my_function`, the result can be retrieved with ``ray.get``, which is a blocking call.
-```py
-assert ray.get(obj_ref) == 1
-```
 
+=== "Python"
+
+    ```py
+    assert ray.get(obj_ref) == 1
+    ```
+
+=== "C++"
+
+    ```c++
+    assert(*obj_ref.Get() == 1);
+    ```
+
+=== "Java"
+
+    ```Java
+    Assert.assertTrue(objRef.get() == 1);
+    ```
+    
 You can also fetch list of objects returned, as we did above. 
-```py
-assert ray.get(obj_refs) == [1, 1, 1, 1]
-```
+
+=== "Python"
+    ```py
+    assert ray.get(obj_refs) == [1, 1, 1, 1]
+    ```
+
+=== "C++"
+
+    ```c++
+    auto results = ray::Get(obj_refs);
+    assert(results.size() == 3);
+    assert(*results[0] == 1);
+    assert(*results[1] == 1);
+    assert(*results[2] == 1);
+    ```
+
+=== "Java"
+
+    ```java
+    List<Integer> results = Ray.get(objectRefs);
+    Assert.assertEquals(results, ImmutableList.of(1, 1, 1));
+    ```
+
 This will return a list of [1, 1, 1, 1]
 
 ## Passing object refs to remote functions
@@ -192,7 +227,7 @@ For example, take this function:
         # no need to explicit ray.get(). Ray will handle resolving
         return value + 1
     
-    obj_ref1 = my_function.remote()
+    obj_ref1 = my_function.remote(0)
     assert ray.get(obj_ref1) == 1
     
     # You can pass an object ref as an argument to another Ray remote function.
@@ -208,7 +243,7 @@ For example, take this function:
     }
     RAY_REMOTE(FunctionWithAnArgument);
     
-    auto obj_ref1 = ray::Task(MyFunction).Remote();
+    auto obj_ref1 = ray::Task(MyFunction).Remote(0);
     assert(*obj_ref1.Get() == 1);
     
     // You can pass an object ref as an argument to another Ray remote function.
@@ -226,7 +261,7 @@ For example, take this function:
       }
     }
     
-    ObjectRef<Integer> objRef1 = Ray.task(MyRayApp::myFunction).remote();
+    ObjectRef<Integer> objRef1 = Ray.task(MyRayApp::myFunction).remote(0);
     Assert.assertTrue(objRef1.get() == 1);
     
     // You can pass an object ref as an argument to another Ray remote function.
