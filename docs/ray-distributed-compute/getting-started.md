@@ -168,14 +168,49 @@ return immediately with a future reference, which can be fetched. Here is simple
 ## Fetching returned values 
 
 From the above `my_function`, the result can be retrieved with ``ray.get``, which is a blocking call.
-```py
-assert ray.get(obj_ref) == 1
-```
 
+=== "Python"
+
+    ```py
+    assert ray.get(obj_ref) == 1
+    ```
+
+=== "C++"
+
+    ```c++
+    assert(*obj_ref.Get() == 1);
+    ```
+
+=== "Java"
+
+    ```Java
+    Assert.assertTrue(objRef.get() == 1);
+    ```
+    
 You can also fetch list of objects returned, as we did above. 
-```py
-assert ray.get(obj_refs) == [1, 1, 1, 1]
-```
+
+=== "Python"
+    ```py
+    assert ray.get(obj_refs) == [1, 1, 1, 1]
+    ```
+
+=== "C++"
+
+    ```c++
+    auto results = ray::Get(obj_refs);
+    assert(results.size() == 3);
+    assert(*results[0] == 1);
+    assert(*results[1] == 1);
+    assert(*results[2] == 1);
+    ```
+
+=== "Java"
+
+    ```java
+    List<Integer> results = Ray.get(objectRefs);
+    Assert.assertEquals(results, ImmutableList.of(1, 1, 1));
+    ```
+
 This will return a list of [1, 1, 1, 1]
 
 ## Passing object refs to remote functions
@@ -183,20 +218,56 @@ This will return a list of [1, 1, 1, 1]
 a remote host, the argument will be a retrieved in-line from an object store as a **regular object**.
 For example, take this function:
 
-```py
-@ray.remote
-def function_with_an_argument(value):
-    # argument in-line fetched or resolved as a value
-    # no need to explicit ray.get(). Ray will handle resolving
-    return value + 1
+=== "Python"
 
-obj_ref1 = my_function.remote()
-assert ray.get(obj_ref1) == 1
+    ```py
+    @ray.remote
+    def function_with_an_argument(value):
+        # argument in-line fetched or resolved as a value
+        # no need to explicit ray.get(). Ray will handle resolving
+        return value + 1
+    
+    obj_ref1 = my_function.remote(0)
+    assert ray.get(obj_ref1) == 1
+    
+    # You can pass an object ref as an argument to another Ray remote function.
+    obj_ref2 = function_with_an_argument.remote(obj_ref1)
+    assert ray.get(obj_ref2) == 2
+    ```
 
-# You can pass an object ref as an argument to another Ray remote function.
-obj_ref2 = function_with_an_argument.remote(obj_ref1)
-assert ray.get(obj_ref2) == 2
-```
+=== "C++"
+
+    ```c++
+    static int FunctionWithAnArgument(int value) {
+      return value + 1;
+    }
+    RAY_REMOTE(FunctionWithAnArgument);
+    
+    auto obj_ref1 = ray::Task(MyFunction).Remote(0);
+    assert(*obj_ref1.Get() == 1);
+    
+    // You can pass an object ref as an argument to another Ray remote function.
+    auto obj_ref2 = ray::Task(FunctionWithAnArgument).Remote(obj_ref1);
+    assert(*obj_ref2.Get() == 2);
+    ```
+
+=== "Java"
+
+    ```java
+    
+    public class MyRayApp {
+        public static int functionWithAnArgument(int value) {
+            return value + 1;
+      }
+    }
+    
+    ObjectRef<Integer> objRef1 = Ray.task(MyRayApp::myFunction).remote(0);
+    Assert.assertTrue(objRef1.get() == 1);
+    
+    // You can pass an object ref as an argument to another Ray remote function.
+    ObjectRef<Integer> objRef2 = Ray.task(MyRayApp::functionWithAnArgument, objRef1).remote();
+    Assert.assertTrue(objRef2.get() == 2);
+    ```
 
 A couple of salient Ray behavior to note here:
 
@@ -209,41 +280,48 @@ A couple of salient Ray behavior to note here:
 Being true to Pythonic, Ray can return multiple object refs, by specifying in the remote decorator. The 
 returned object_refs can be retrieved individually via `ray.get(obj_ref)`.
 
-```py
-@ray.remote(num_returns=3)
-def return_multiple():
-    return 1, 2, 3
-
-a, b, c = return_multiple.remote()
-assert ray.get(a) == 1
-assert ray.get(b) == 2
-assert ray.get(c) == 3
-```
+=== "Python"
+    
+    ```py
+    @ray.remote(num_returns=3)
+    def return_multiple():
+        return 1, 2, 3
+    
+    a, b, c = return_multiple.remote()
+    assert ray.get(a) == 1
+    assert ray.get(b) == 2
+    assert ray.get(c) == 3
+    ```
 
 ## Cancelling Ray tasks
 Often you may want to cancel a long-running task on a remote host. You don't know where the task is
 scheduled, but using returned obj_ref, you instruct Ray to locate the task and terminate it.
 
-```py
-@ray.remote
-def blocking_operation():
-    time.sleep(10e6)
+=== "Python"
 
-obj_ref = blocking_operation.remote()
-# Use the obj_ref to terminate the remote task
-ray.cancel(obj_ref)
-```
+    ```py
+    @ray.remote
+    def blocking_operation():
+        time.sleep(10e6)
+    
+    obj_ref = blocking_operation.remote()
+    # Use the obj_ref to terminate the remote task
+    ray.cancel(obj_ref)
+    ```
 
 Fetching an obj_ref of a cancelled task raises and exception. 
-```py
-from ray.exceptions import TaskCancelledError
 
-# In case you want to be cautious.
-try:
-    ray.get(obj_ref)
-except TaskCancelledError:
-    print("Object reference was cancelled.")
-```
+=== "Python"
+
+    ```py
+    from ray.exceptions import TaskCancelledError
+    
+    # In case you want to be cautious.
+    try:
+        ray.get(obj_ref)
+    except TaskCancelledError:
+        print("Object reference was cancelled.")
+    ```
 
 ## Specifying resources for a Ray task
 For compute intensive Ray application, you may want to assign resources, such as number of CPUs or GPUs.
