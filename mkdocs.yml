@@ -12,6 +12,9 @@ theme:
     - content.tabs.link
 extra_css:
     - stylesheets/extra.css
+extra:
+  version:
+    provider: mike
 
 markdown_extensions:
   # Syntax highlighting
@@ -27,9 +30,10 @@ markdown_extensions:
   - md_in_html
 
 nav:
-  - Getting started:
-    - 'Welcome to Ray documentations': index.md
-    - 'What and why Ray': what-and-why/what-and-why-ray.md
+  - Welcome to Ray docs: index.md
+  - Overview of Ray:
+    - 'What and why Ray': overview-ray/what-and-why-ray.md
+    - 'More information': overview-ray/more-information.md
   - Ray for distributed compute:
     - 'Getting started': ray-distributed-compute/getting-started.md
     - 'Key concepts': ray-distributed-compute/key-concepts.md
@@ -63,11 +67,11 @@ nav:
       - 'Key concepts': ray-ml/ray-serve/key-concepts.md
       - 'Tutorials': 
         - 'Quick start': ray-ml/ray-serve/tutorials.md
-        - 'Model composition': ray-ml/ray-serve/tutorials/model-composition.md
-  - Deploy Ray:
-    - 'Getting started': ray-deployment/getting-started.md
-    - 'Key concepts': ray-deployment/key-concepts.md
-    - 'Tutorials': ray-deployment/tutorials.md
+        - 'Model composition': ray-ml/ray-serve/tutorials.md
+  - Deploy Ray: ray-deployment/getting-started.md
+    # - 'Getting started': ray-deployment/getting-started.md
+    # - 'Key concepts': ray-deployment/key-concepts.md
+    # - 'Tutorials': ray-deployment/tutorials.md
   - Examples: examples/index.md
   - API references: api-references/ray-core.md
     # - 'Ray Core': api-references/ray-core.md
@@ -77,7 +81,7 @@ nav:
     # - 'Ray Tune': api-references/ray-tune.md
     # - 'Ray Workflows': api-references/ray-workflows.md
     # - 'Ray Serve': api-references/ray-serve.md
-  - Contributor guide:
-    - 'Getting involved / Contributing': contributor-guide/getting-involved.md
+  - Contributor guide: contributor-guide/getting-involved.md
+    # - 'Getting involved / Contributing': contributor-guide/getting-involved.md
 
       
