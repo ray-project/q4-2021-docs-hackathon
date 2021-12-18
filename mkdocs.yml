@@ -8,6 +8,7 @@ theme:
     accent: blue
   features:
     - navigation.sections
+    - navigation.indexes
     - content.tabs.link
 extra_css:
     - stylesheets/extra.css
@@ -58,19 +59,22 @@ nav:
     - 'Ray Serve': 
       - 'Getting started': ray-ml/ray-serve/getting-started.md
       - 'Key concepts': ray-ml/ray-serve/key-concepts.md
-      - 'Tutorials': ray-ml/ray-serve/tutorials.md
+      - 'Tutorials': 
+        - 'Quick start': ray-ml/ray-serve/tutorials.md
+        - 'Model composition': ray-ml/ray-serve/tutorials.md
   - Deploy Ray:
     - 'Getting started': ray-deployment/getting-started.md
     - 'Key concepts': ray-deployment/key-concepts.md
     - 'Tutorials': ray-deployment/tutorials.md
-  - API references:
-    - 'Ray Core': api-references/ray-core.md
-    - 'Ray Data': api-references/ray-data.md
-    - 'Ray Train': api-references/ray-train.md
-    - 'RLlib': api-references/ray-rllib.md
-    - 'Ray Tune': api-references/ray-tune.md
-    - 'Ray Workflows': api-references/ray-workflows.md
-    - 'Ray Serve': api-references/ray-serve.md
+  - Examples: examples/index.md
+  - API references: api-references/ray-core.md
+    # - 'Ray Core': api-references/ray-core.md
+    # - 'Ray Data': api-references/ray-data.md
+    # - 'Ray Train': api-references/ray-train.md
+    # - 'RLlib': api-references/ray-rllib.md
+    # - 'Ray Tune': api-references/ray-tune.md
+    # - 'Ray Workflows': api-references/ray-workflows.md
+    # - 'Ray Serve': api-references/ray-serve.md
   - Contributor guide:
     - 'Getting involved / Contributing': contributor-guide/getting-involved.md
 
