@@ -25,10 +25,10 @@ For Ubuntu, run the following commands:
     sudo yum install psmisc
 
     pip install cython==0.29.0 pytest
-    ```
 
-Install bazel manually from link:
-<https://docs.bazel.build/versions/main/install-redhat.html>
+    # Install bazel manually from link:
+    # <https://docs.bazel.build/versions/main/install-redhat.html>
+    ```
 
 === "macOS"
 

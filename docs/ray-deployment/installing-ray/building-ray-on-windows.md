@@ -34,7 +34,7 @@ case the URLs changed, search at the organizations' sites.
     `C:\Program Files\Git\bin\bash.exe`. If git was installed for a
     single user, adjust the path accordingly.
 
-4\. Bazel 4.2 installation. Go to bazel 4.2 release web page and
+4. Bazel 4.2 installation. Go to bazel 4.2 release web page and
 download bazel-4.2.1-windows-x86_64.exe. Copy the exe into the directory
 of your choice. Define an environment variable BAZEL_PATH to full exe
 path (example: `set BAZEL_PATH=C:\bazel\bazel.exe`). Also add the bazel
