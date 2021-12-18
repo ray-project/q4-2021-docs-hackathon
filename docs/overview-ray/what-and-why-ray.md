@@ -51,17 +51,27 @@ you can easily do so with only a single line or no line change of code.
 
 `RAY_ADDRESS=ray://<cluster>:<port> python your_script.py`
 
-## Is Ray For You?
-Consider Ray as a choice of your framework if you are a data scientist, ML, or MLOps engineer and you have more than three of these 
-following architectural, development and deployment, and requirements for your machine learning workloads:
 
+## Is Ray For You?
+
+### If you are building distributed applications
+1. You want to take advantage of the PyData ecosystem with Ray’s capabilities for distributed computing.
+
+
+### If you are building machine learning solutions
  1. You want to use the latest and greatest ML frameworks locally for development in an IDE or Jupyter notebook.
- 2. You want to experiment and iterate over your machine learning models on your laptop with a small set of data and then scale it on a 
- 3. cluster, with multiple nodes and multiple cores of hardware accelerators, with no or as few lines of code as possible and not worry about library management and dependencies on the remote cluster.
- 4. You want to build deep learning models, do distribute training with PyTorch or TensorFlow using their parallel distributed training algorithms and strategies.
- 5. You want to conduct model inference at a massive scale with a large batch of data, and do it in a distributed fashion.
- 6. You want to deploy your ML models at scale and adhere to the latest ML serving design patterns.
- 7. You want to take advantage of the PyData ecosystem with Ray’s capabilities for distributed computing.
+ 2. You want to experiment and iterate over your machine learning models on your laptop with a small set of data and then scale it on a cluster, with multiple nodes and multiple cores of hardware accelerators, with no or as few lines of code as possible and not worry about library management and dependencies on the remote cluster.
+ 3. You want to build deep learning models, do distribute training with PyTorch or TensorFlow using their parallel distributed training algorithms and strategies.
+ 4. You want to conduct model inference at a massive scale with a large batch of data, and do it in a distributed fashion.
+ 5. You want to deploy your ML models at scale and adhere to the latest ML serving design patterns.
+ 6. You want to take advantage of the PyData ecosystem with Ray’s capabilities for distributed computing.
+
+### If you are deploying Ray on your infrastructure
+ 1. You want to conduct model inference at a massive scale with a large batch of data, and do it in a distributed fashion.
+ 2. You want to deploy your ML models at scale and adhere to the latest ML serving design patterns.
+
+
+
 
 All or a few of the above are good reasons why Ray is for you.
 
