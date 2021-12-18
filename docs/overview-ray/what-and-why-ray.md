@@ -1,5 +1,7 @@
 
 ## Overview
+![](images/video-cover.png)
+<br>
 
 Today’s machine learning workloads like deep learning and hyperparameter tuning are compute-intensive. They require distributed or parallel 
 execution at scale. As more and more vertical industries incorporate the state-of-the-art (SOTA) ML applications, the current compute-strata 

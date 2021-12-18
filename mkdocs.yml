@@ -27,7 +27,7 @@ markdown_extensions:
   - md_in_html
 
 nav:
-  - Welcome to Ray: index.md
+  - Welcome to Ray docs: index.md
   - Overview of Ray:
     - 'What and why Ray': overview-ray/what-and-why-ray.md
     - 'More information': overview-ray/more-information.md
@@ -64,19 +64,11 @@ nav:
       - 'Key concepts': ray-ml/ray-serve/key-concepts.md
       - 'Tutorials': 
         - 'Quick start': ray-ml/ray-serve/tutorials.md
-<<<<<<< HEAD
         - 'Model composition': ray-ml/ray-serve/tutorials.md
   - Deploy Ray: ray-deployment/getting-started.md
     # - 'Getting started': ray-deployment/getting-started.md
     # - 'Key concepts': ray-deployment/key-concepts.md
     # - 'Tutorials': ray-deployment/tutorials.md
-=======
-        - 'Model composition': ray-ml/ray-serve/tutorials/model-composition.md
-  - Deploy Ray:
-    - 'Getting started': ray-deployment/getting-started.md
-    - 'Key concepts': ray-deployment/key-concepts.md
-    - 'Tutorials': ray-deployment/tutorials.md
->>>>>>> origin/main
   - Examples: examples/index.md
   - API references: api-references/ray-core.md
     # - 'Ray Core': api-references/ray-core.md
