@@ -35,7 +35,7 @@ nav:
     - 'Key concepts': ray-distributed-compute/key-concepts.md
     - 'Tutorials':
         - 'Building Ray on Linux and macOS': ray-deployment/installing-ray/building-ray-on-linux-and-macos.md
-        - 'Building Ray on Windows': docs/ray-deployment/installing-ray/building-ray-on-windows.md
+        - 'Building Ray on Windows': ray-deployment/installing-ray/building-ray-on-windows.md
   - Ray for ML:
     - 'Overview': ray-ml/overview.md
     - 'Ray Data': 
