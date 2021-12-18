@@ -2,8 +2,12 @@
     height: 2.5rem;
     width: auto;
 }
+.md-header__button.md-logo {
+    margin: 0;
+    padding: 0;
+}
 
-.md-header__ellipsis{
+.md-header__ellipsis span.md-ellipsis {
     display:none;
 }
 

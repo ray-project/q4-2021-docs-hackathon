@@ -12,6 +12,9 @@ theme:
     - content.tabs.link
 extra_css:
     - stylesheets/extra.css
+extra:
+  version:
+    provider: mike
 
 markdown_extensions:
   # Syntax highlighting
