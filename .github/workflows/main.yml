@@ -33,7 +33,7 @@ jobs:
           git config --global user.name Derick Deploy
           git config --global user.email derickdeploy@example.com 
       - name: Mike deploy
-        run: mike deploy 0.2
+        run: mike deploy --push --update-aliases 0.1 latest
       - name: Mike set default
-        run: mike set-default 0.2
+        run: mike set-default --push latest
       # - run: mkdocs gh-deploy --force
