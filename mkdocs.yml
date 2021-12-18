@@ -18,6 +18,8 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.superfences
   # Images
   - attr_list
@@ -26,7 +28,7 @@ markdown_extensions:
 nav:
   - Getting started:
     - 'Welcome to Ray documentations': index.md
-    - 'What and why': what-and-why/what-and-why-ray.md
+    - 'What and why Ray': what-and-why/what-and-why-ray.md
   - Ray for distributed compute:
     - 'Getting started': ray-distributed-compute/getting-started.md
     - 'Key concepts': ray-distributed-compute/key-concepts.md
