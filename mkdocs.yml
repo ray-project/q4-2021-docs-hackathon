@@ -10,11 +10,23 @@ theme:
     - navigation.sections
     - navigation.indexes
     - content.tabs.link
-extra_css:
-    - stylesheets/extra.css
+
 extra:
   version:
     provider: mike
+  generator: false
+  homepage: https://ray.io
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/raydistributed
+    - icon: fontawesome/brands/github
+      link: https://github.com/ray-project/ray
+    - icon: fontawesome/solid/globe
+      link: https://ray.io
+
+
+extra_css:
+    - stylesheets/extra.css
 
 markdown_extensions:
   # Syntax highlighting
