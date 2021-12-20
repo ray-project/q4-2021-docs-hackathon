@@ -1,0 +1,45 @@
+.md-header__button.md-logo :where(img,svg) {
+    height: 2.5rem;
+    width: auto;
+}
+.md-header__button.md-logo {
+    margin: 0;
+    padding: 0;
+}
+
+.md-header__ellipsis span.md-ellipsis {
+    display:none;
+}
+
+:root>* {
+--md-footer-bg-color: rgba(0,0,0,0.04);
+--md-footer-fg-color: rgba(0,0,0,0.87);
+--md-typeset-a-color: #1976D2;
+}
+
+.md-footer-meta {
+    background-color: var(--md-footer-fg-color);
+}
+
+.md-copyright{
+    color: var(--md-footer-fg-color--light);
+}
+
+
+.md-footer__link:where(:focus,:hover) {
+    opacity: 1;
+    color: #1976D2;
+}
+
+/* Hide main nav title */
+label[for="__drawer"] {
+    display: none;
+}
+.md-nav__list>*:first-child {
+    margin-top: 0;
+}
+
+/* bold the top level childless pages */
+.md-nav--primary > .md-nav__list > li > a {
+    font-weight: bold;
+}
