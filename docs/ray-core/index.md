@@ -1,4 +1,4 @@
-## Getting started with a 10-minute Ray core walk through
+# Getting started with a 10-minute Ray core walk through
 
 
 This short walk through will quickly get you started with Ray core APIs. It will give you the feel for its simplicity and
