@@ -1,7 +1,8 @@
-.md-header__button.md-logo :where(img,svg) {
-    height: 2.5rem;
-    width: auto;
+.md-header__button.md-logo :is(img,svg) {
+     height: 2.5rem;
+     width: auto;
 }
+
 .md-header__button.md-logo {
     margin: 0;
     padding: 0;
@@ -25,7 +26,6 @@
     color: var(--md-footer-fg-color--light);
 }
 
-
 .md-footer__link:where(:focus,:hover) {
     opacity: 1;
     color: #1976D2;
@@ -40,6 +40,16 @@ label[for="__drawer"] {
 }
 
 /* bold the top level childless pages */
-.md-nav--primary > .md-nav__list > li > a {
-    font-weight: bold;
+/*.md-nav--primary > .md-nav__list > li > a {*/
+/*    font-weight: bold;*/
+/*}*/
+
+.termynal-comment {
+    color: #4a968f;
+    font-style: italic;
+    display: block;
+}
+
+.termy [data-termynal] {
+    white-space: pre-wrap;
 }
