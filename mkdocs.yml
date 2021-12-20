@@ -1,22 +1,81 @@
 site_name: Ray
+
+copyright: Copyright &copy; Anyscale, Inc 2021
+repo_url: https://github.com/ray-project/ray
+repo_name: ray-project/ray
+# Make this the correct path, once docs are in main project. This setting hides the edit button.
+edit_uri: ""
+
 theme:
   name: material
+#  custom_dir: overrides
+  font:
+    text: Roboto
+    code: Roboto Mono
   logo: 'images/ray-logo.png'
   favicon: 'images/favicon.ico'
   palette:
-    primary: white
-    accent: blue
+    - scheme: default
+      primary: white
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
   features:
-    - navigation.sections
+    # Track navigation anchors in URL
+    - navigation.tracking
+    # Top-level navbar as navigation tabs
+    - navigation.tabs
+    # Sections are rendered as groups in the sidebar
+#    - navigation.sections
+    # Attach documents to sections, e.g. for overviews
     - navigation.indexes
+    # Link all content tabs
     - content.tabs.link
-extra_css:
-    - stylesheets/extra.css
-extra:
-  version:
-    provider: mike
+    # Anchor tracking
+    - navigation.tracking
+    # Instant loading for all pages
+    - navigation.instant
+    # Scroll to top
+    - navigation.top
+    # Code annotations
+    - content.code.annotate
+
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      # If set to true, runs all notebook cells (prohibitively slow)
+      # execute: True
+      kernel_name: python3
+      include_source: True
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_root_heading: true
+            show_source: true
+          selection:
+            docstring_style: google
+            filters:
+              - "!^_"  # exlude all members starting with _
+              - "^__init__$"  # but always include __init__ modules and methods
+
 
 markdown_extensions:
+  # Generate footnotes
+  - footnotes
+  # Include code snipptes by line number (supports slicing)
+  - mdx_include:
+      base_path: code
   # Syntax highlighting
   - pymdownx.highlight:
       anchor_linenums: true
@@ -27,61 +86,111 @@ markdown_extensions:
   - pymdownx.superfences
   # Images
   - attr_list
+  # Allow markdown in HTML blocks
   - md_in_html
+  # Metadata extension (add custom key-val pairs)
+  - meta
+  # Emoji support
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
 
 nav:
-  - Welcome to Ray docs: index.md
-  - Overview of Ray:
-    - 'What and why Ray': overview-ray/what-and-why-ray.md
-    - 'More information': overview-ray/more-information.md
-  - Ray for distributed compute:
-    - 'Getting started': ray-distributed-compute/getting-started.md
-    - 'Key concepts': ray-distributed-compute/key-concepts.md
-    - 'Tutorials': ray-distributed-compute/tutorials.md
-  - Ray for ML:
-    - 'Overview': ray-ml/overview.md
+  - 'Getting Started':
+    - index.md
+    - 'Why Ray?': ray-overview/what-and-why-ray.md
+    - 'Learn more': ray-overview/more-information.md
+    - Ray Core:
+      - ray-core/index.md
+      - 'Key concepts': ray-core/key-concepts.md
+      - 'Tutorials': ray-core/tutorials.md
     - 'Ray Data': 
-      - 'Getting started': ray-ml/ray-data/getting-started.md
+      - ray-ml/ray-data/index.md
       - 'Key concepts': ray-ml/ray-data/key-concepts.md
-      - 'Tutorials': ray-ml/ray-data/tutorials.md
+      - 'Tutorials':
+        - ray-ml/ray-data/tutorials/index.md
     - 'Ray Train': 
-      - 'Getting started': ray-ml/ray-train/getting-started.md
+      - ray-ml/ray-train/index.md
       - 'Key concepts': ray-ml/ray-train/key-concepts.md
       - 'Tutorials': ray-ml/ray-train/tutorials.md
-    - 'RLlib': 
-      - 'Getting started': ray-ml/ray-rllib/getting-started.md
+    - 'Ray RLlib':
+      - ray-ml/ray-rllib/index.md
       - 'Key concepts': ray-ml/ray-rllib/key-concepts.md
       - 'Tutorials': ray-ml/ray-rllib/tutorials.md
     - 'Ray Tune': 
-      - 'Getting started': ray-ml/ray-tune/getting-started.md
+      - ray-ml/ray-tune/index.md
       - 'Key concepts': ray-ml/ray-tune/key-concepts.md
       - 'Tutorials': ray-ml/ray-tune/tutorials.md
-    - 'Ray Workflows': 
-      - 'Getting started': ray-ml/ray-workflows/getting-started.md
-      - 'Key concepts': ray-ml/ray-workflows/key-concepts.md
-      - 'Tutorials': ray-ml/ray-workflows/tutorials.md
     - 'Ray Serve': 
-      - 'Getting started': ray-ml/ray-serve/getting-started.md
+      - ray-ml/ray-serve/index.md
       - 'Key concepts': ray-ml/ray-serve/key-concepts.md
       - 'Tutorials': 
-        - 'Quick start': ray-ml/ray-serve/tutorials.md
-        - 'Model composition': ray-ml/ray-serve/tutorials.md
-  - Deploy Ray: ray-deployment/getting-started.md
-    # - 'Getting started': ray-deployment/getting-started.md
-    # - 'Key concepts': ray-deployment/key-concepts.md
-    # - 'Tutorials': ray-deployment/tutorials.md
-  - Examples: examples/index.md
-  - API references: api-references/ray-core.md
-    # - 'Ray Core': api-references/ray-core.md
-    # - 'Ray Data': api-references/ray-data.md
-    # - 'Ray Train': api-references/ray-train.md
-    # - 'RLlib': api-references/ray-rllib.md
-    # - 'Ray Tune': api-references/ray-tune.md
-    # - 'Ray Workflows': api-references/ray-workflows.md
-    # - 'Ray Serve': api-references/ray-serve.md
-  - Contributor guide:
-    - 'Building Ray on Linux and macOS': ray-deployment/installing-ray/building-ray-on-linux-and-macos.md
-    - 'Building Ray on Windows': ray-deployment/installing-ray/building-ray-on-windows.md
-    # - 'Getting involved / Contributing': contributor-guide/getting-involved.md
+        - ray-ml/ray-serve/tutorials/index.md
+        - 'Model composition': ray-ml/ray-serve/tutorials/model-composition.md
+    - 'Ray Workflows':
+        - ray-ml/ray-workflows/index.md
+        - 'Key concepts': ray-ml/ray-workflows/key-concepts.md
+        - 'Tutorials': ray-ml/ray-workflows/tutorials.md
+  - Deploying Ray:
+      - ray-deployment/index.md
+      - 'Key concepts': ray-deployment/key-concepts.md
+      - 'Tutorials': ray-deployment/tutorials.md
+  - Ecosystem:
+      - ray-ecosystem/index.md
+      - 'Integrations': ray-ecosystem/integrations/integrations.md
+      - 'Joblib': ray-ecosystem/integrations/joblib.md
+  - Examples:
+    - ray-examples/index.md
+    - 'Crash Course':
+        - ray-examples/ray-crash-course/00-Ray-Crash-Course-Overview.ipynb
+        - 'Ray Tasks': ray-examples/ray-crash-course/01-Ray-Tasks.ipynb
+        - 'Ray Actors': ray-examples/ray-crash-course/02-Ray-Actors.ipynb
+        - 'Why Ray': ray-examples/ray-crash-course/03-Why-Ray.ipynb
+        - 'Ray Multiprocessing': ray-examples/ray-crash-course/04-Ray-Multiprocessing.ipynb
+        - 'Ray Parallel Iterators': ray-examples/ray-crash-course/05-Ray-Parallel-Iterators.ipynb
+        - 'Exploring Ray API calls': ray-examples/ray-crash-course/06-Exploring-Ray-API-Calls.ipynb
+        - 'Running Ray Clusters': ray-examples/ray-crash-course/07-Running-Ray-Clusters.ipynb
+  - API:
+    - ray-api-references/index.md
+    - 'Ray RLlib':
+      - ray-api-references/ray-rllib/index.md
+      - 'Agents': ray-api-references/ray-rllib/agents.md
+      - 'Policies': ray-api-references/ray-rllib/policy.md
+      - 'Environments': ray-api-references/ray-rllib/env.md
+      - 'Models': ray-api-references/ray-rllib/models.md
+      - 'Evaluation' : ray-api-references/ray-rllib/evaluation.md
+      - 'Execution': ray-api-references/ray-rllib/execution.md
+      - 'Utility': ray-api-references/ray-rllib/utils.md
+    - 'Ray Core': ray-api-references/ray-core.md
+    - 'Ray Data': ray-api-references/ray-data.md
+    - 'Ray Train': ray-api-references/ray-train.md
+    - 'Ray Tune': ray-api-references/ray-tune.md
+    - 'Ray Workflows': ray-api-references/ray-workflows.md
+    - 'Ray Serve': ray-api-references/ray-serve.md
+  - Contribute:
+      - ray-contributor-guide/index.md
+      - 'Start Contributing': ray-contributor-guide/getting-involved.md
+      - 'Building Ray on Linux and macOS': ray-contributor-guide/installing-ray/building-ray-on-linux-and-macos.md
+      - 'Building Ray on Windows': ray-contributor-guide/installing-ray/building-ray-on-windows.md
 
-      
+extra:
+  version:
+    provider: mike
+  generator: false
+  homepage: https://ray.io
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/raydistributed
+    - icon: fontawesome/brands/github
+      link: https://github.com/ray-project/ray
+    - icon: fontawesome/solid/globe
+      link: https://ray.io
+
+extra_javascript:
+  - js/termynal.js
+  - js/custom.js
+
+extra_css:
+  - css/termynal.css
+  - css/extra.css
