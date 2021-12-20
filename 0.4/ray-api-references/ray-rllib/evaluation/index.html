@@ -4872,7 +4872,7 @@ VectorEnv, MultiAgentEnv, etc.)</p>
 
 
 <h3 class="doc doc-heading" id="ray.rllib.evaluation.rollout_worker.RolloutWorker.__init__">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">env_creator</span><span class="p">,</span> <span class="n">validate_env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy_spec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy_mapping_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policies_to_train</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tf_session_creator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rollout_fragment_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">count_steps_by</span><span class="o">=</span><span class="s1">&#39;env_steps&#39;</span><span class="p">,</span> <span class="n">batch_mode</span><span class="o">=</span><span class="s1">&#39;truncate_episodes&#39;</span><span class="p">,</span> <span class="n">episode_horizon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preprocessor_pref</span><span class="o">=</span><span class="s1">&#39;deepmind&#39;</span><span class="p">,</span> <span class="n">sample_async</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compress_observations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">observation_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_filter</span><span class="o">=</span><span class="s1">&#39;NoFilter&#39;</span><span class="p">,</span> <span class="n">clip_rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize_actions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_actions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">env_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">worker_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">record_env</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_creator</span><span class="o">=&lt;</span><span class="n">function</span> <span class="n">RolloutWorker</span><span class="o">.&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x125035d40</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">input_evaluation</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">(),</span> <span class="n">output_creator</span><span class="o">=&lt;</span><span class="n">function</span> <span class="n">RolloutWorker</span><span class="o">.&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x125035dd0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">remote_worker_envs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remote_env_batch_wait_ms</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">soft_horizon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_done_at_end</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extra_python_environs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fake_sampler</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">spaces</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">monitor_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">env_creator</span><span class="p">,</span> <span class="n">validate_env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy_spec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy_mapping_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policies_to_train</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tf_session_creator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rollout_fragment_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">count_steps_by</span><span class="o">=</span><span class="s1">&#39;env_steps&#39;</span><span class="p">,</span> <span class="n">batch_mode</span><span class="o">=</span><span class="s1">&#39;truncate_episodes&#39;</span><span class="p">,</span> <span class="n">episode_horizon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preprocessor_pref</span><span class="o">=</span><span class="s1">&#39;deepmind&#39;</span><span class="p">,</span> <span class="n">sample_async</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compress_observations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">observation_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observation_filter</span><span class="o">=</span><span class="s1">&#39;NoFilter&#39;</span><span class="p">,</span> <span class="n">clip_rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize_actions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_actions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">env_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">worker_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">record_env</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_creator</span><span class="o">=&lt;</span><span class="n">function</span> <span class="n">RolloutWorker</span><span class="o">.&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x11d91bd40</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">input_evaluation</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">(),</span> <span class="n">output_creator</span><span class="o">=&lt;</span><span class="n">function</span> <span class="n">RolloutWorker</span><span class="o">.&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x11d91bdd0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">remote_worker_envs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remote_env_batch_wait_ms</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">soft_horizon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_done_at_end</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extra_python_environs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fake_sampler</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">spaces</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">monitor_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
@@ -5115,7 +5115,7 @@ DefaultCallbacks for training/policy/rollout-worker callbacks.</p></td>
         <td><code>Callable[[ray.rllib.offline.io_context.IOContext], ray.rllib.offline.input_reader.InputReader]</code></td>
         <td><p>Function that returns an InputReader object for
 loading previous generated experiences.</p></td>
-        <td><code>&lt;function RolloutWorker.&lt;lambda&gt; at 0x125035d40&gt;</code></td>
+        <td><code>&lt;function RolloutWorker.&lt;lambda&gt; at 0x11d91bd40&gt;</code></td>
       </tr>
       <tr>
         <td><code>input_evaluation</code></td>
@@ -5134,7 +5134,7 @@ use this data for evaluation only and never for learning.</p></td>
         <td><code>Callable[[ray.rllib.offline.io_context.IOContext], ray.rllib.offline.output_writer.OutputWriter]</code></td>
         <td><p>Function that returns an OutputWriter object for
 saving generated experiences.</p></td>
-        <td><code>&lt;function RolloutWorker.&lt;lambda&gt; at 0x125035dd0&gt;</code></td>
+        <td><code>&lt;function RolloutWorker.&lt;lambda&gt; at 0x11d91bdd0&gt;</code></td>
       </tr>
       <tr>
         <td><code>remote_worker_envs</code></td>
@@ -8522,7 +8522,7 @@ as-is to the parent dict constructor.</p>
 
 
 <h3 class="doc doc-heading" id="ray.rllib.policy.sample_batch.SampleBatch.compress">
-<code class="highlight language-python"><span class="n">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bulk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="s1">&#39;new_obs&#39;</span><span class="p">}))</span></code>
+<code class="highlight language-python"><span class="n">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bulk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;new_obs&#39;</span><span class="p">,</span> <span class="s1">&#39;obs&#39;</span><span class="p">}))</span></code>
 
 
 </h3>
@@ -8555,7 +8555,7 @@ is the batch size.</p></td>
         <td><code>Set[str]</code></td>
         <td><p>The columns to compress. Default: Only
 compress the obs and new_obs columns.</p></td>
-        <td><code>frozenset({&#39;obs&#39;, &#39;new_obs&#39;})</code></td>
+        <td><code>frozenset({&#39;new_obs&#39;, &#39;obs&#39;})</code></td>
       </tr>
   </tbody>
 </table>
@@ -8931,7 +8931,7 @@ SampleBatches or MultiAgentBatches to be concatenated.</p></td>
 
 
 <h3 class="doc doc-heading" id="ray.rllib.policy.sample_batch.SampleBatch.decompress_if_needed">
-<code class="highlight language-python"><span class="n">decompress_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="s1">&#39;new_obs&#39;</span><span class="p">}))</span></code>
+<code class="highlight language-python"><span class="n">decompress_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;new_obs&#39;</span><span class="p">,</span> <span class="s1">&#39;obs&#39;</span><span class="p">}))</span></code>
 
 
 </h3>
@@ -8956,7 +8956,7 @@ SampleBatches or MultiAgentBatches to be concatenated.</p></td>
         <td><code>Set[str]</code></td>
         <td><p>The columns to decompress. Default: Only
 decompress the obs and new_obs columns.</p></td>
-        <td><code>frozenset({&#39;obs&#39;, &#39;new_obs&#39;})</code></td>
+        <td><code>frozenset({&#39;new_obs&#39;, &#39;obs&#39;})</code></td>
       </tr>
   </tbody>
 </table>
@@ -10191,7 +10191,7 @@ transitions this batch contains across all policies in total.</p></td>
 
 
 <h3 class="doc doc-heading" id="ray.rllib.policy.sample_batch.MultiAgentBatch.compress">
-<code class="highlight language-python"><span class="n">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bulk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="s1">&#39;new_obs&#39;</span><span class="p">}))</span></code>
+<code class="highlight language-python"><span class="n">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bulk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;new_obs&#39;</span><span class="p">,</span> <span class="s1">&#39;obs&#39;</span><span class="p">}))</span></code>
 
 
 </h3>
@@ -10223,7 +10223,7 @@ is the batch size.</p></td>
         <td><code>columns</code></td>
         <td><code>Set[str]</code></td>
         <td><p>Set of column names to compress.</p></td>
-        <td><code>frozenset({&#39;obs&#39;, &#39;new_obs&#39;})</code></td>
+        <td><code>frozenset({&#39;new_obs&#39;, &#39;obs&#39;})</code></td>
       </tr>
   </tbody>
 </table>
@@ -10400,7 +10400,7 @@ to concatenate.</p></td>
 
 
 <h3 class="doc doc-heading" id="ray.rllib.policy.sample_batch.MultiAgentBatch.decompress_if_needed">
-<code class="highlight language-python"><span class="n">decompress_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="s1">&#39;new_obs&#39;</span><span class="p">}))</span></code>
+<code class="highlight language-python"><span class="n">decompress_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;new_obs&#39;</span><span class="p">,</span> <span class="s1">&#39;obs&#39;</span><span class="p">}))</span></code>
 
 
 </h3>
@@ -10424,7 +10424,7 @@ to concatenate.</p></td>
         <td><code>columns</code></td>
         <td><code>Set[str]</code></td>
         <td><p>Set of column names to decompress.</p></td>
-        <td><code>frozenset({&#39;obs&#39;, &#39;new_obs&#39;})</code></td>
+        <td><code>frozenset({&#39;new_obs&#39;, &#39;obs&#39;})</code></td>
       </tr>
   </tbody>
 </table>
