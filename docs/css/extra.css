@@ -53,3 +53,8 @@ label[for="__drawer"] {
 .termy [data-termynal] {
     white-space: pre-wrap;
 }
+
+/* reduce the top margin of the main container */
+.md-main__inner {
+    margin-top: 0;
+}
