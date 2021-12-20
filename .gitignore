@@ -133,3 +133,6 @@ dmypy.json
 
 # Private / insiders files for mkdocs material
 mkdocs-material/
+
+# Hide ray repo (we won't need this going forward, just for testing)
+ray/
