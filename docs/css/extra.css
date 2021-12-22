@@ -58,3 +58,14 @@ label[for="__drawer"] {
 .md-main__inner {
     margin-top: 0;
 }
+
+/* make the method names in API references stand out more */
+.md-typeset h3 {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+/* swap the top/bottom margin of h1 */
+.md-typeset h1 {
+    margin: 1.25em 0 0;
+}
